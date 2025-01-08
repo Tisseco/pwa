@@ -9,6 +9,7 @@ export default defineConfig({
 	test: {
     globals: true,
     environment: 'jsdom',
+    setupFiles: './src/domains/tests/setupTest.ts',
   },
   plugins: [react(), VitePWA({
     strategies: 'injectManifest',
