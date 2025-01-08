@@ -6,7 +6,9 @@ import { VitePWA } from 'vite-plugin-pwa';
 // https://vite.dev/config/
 export default defineConfig({
   // @ts-expect-error: reference types vitest/config doesn't work in vite v6 unlike v5
-	test: {},
+	test: {
+    globals: true
+  },
   plugins: [react(), VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',
