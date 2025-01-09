@@ -4,6 +4,7 @@ import * as z from "zod"
 import { useMutation } from "@tanstack/react-query"
 import { LoginPayload } from "@/domains/auth/domain/types/loginTypes"
 import { useRouteContext } from "@tanstack/react-router"
+import { useToast } from "@/domains/shared/presenter/hooks/use-toast"
 
 const schema = z.object({
   email: z.string().email(),
@@ -13,7 +14,8 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>
 
 export const useLoginForm = () => {
-  const { loginUseCase } = useRouteContext({ from: '__root__' })
+  const { i18n: { t },loginUseCase } = useRouteContext({ from: '__root__' })
+  const { toast } = useToast()
   const methods = useForm<Schema>({ defaultValues: {
     email: '',
     password: ''
@@ -22,7 +24,13 @@ export const useLoginForm = () => {
   const { mutate } = useMutation({
     mutationFn: ({ email, password } : LoginPayload) => loginUseCase({ email, password }),
     onSuccess: async (data) => {
-      console.log("🚀 ~ useLoginForm ~ data:", data)
+      if ("errors" in data) {
+        toast({
+          variant: "destructive",
+          title: t("something.went.wrong"),
+          description: data.errors?.[0]?.message
+        })
+      }
     }
 })
 
