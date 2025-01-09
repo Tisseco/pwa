@@ -3,10 +3,12 @@ import PWABadge from '../domains/shared/presenter/components/PWABadge'
 
 import { i18n } from 'i18next'
 import { QueryClient } from '@tanstack/react-query'
+import { AuthRepository } from '@/domains/auth/domain/AuthRepository'
 
 export const Route = createRootRouteWithContext<{
     i18n: i18n
     queryClient: QueryClient
+    loginUseCase: AuthRepository["login"]
 }>()({
   component: Root
 })
