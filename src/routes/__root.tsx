@@ -2,8 +2,12 @@ import { createRootRouteWithContext, Link, Outlet, useRouteContext } from '@tans
 import PWABadge from '../domains/shared/presenter/components/PWABadge'
 
 import { i18n } from 'i18next'
+import { QueryClient } from '@tanstack/react-query'
 
-export const Route = createRootRouteWithContext<{i18n: i18n}>()({
+export const Route = createRootRouteWithContext<{
+    i18n: i18n
+    queryClient: QueryClient
+}>()({
   component: Root
 })
 
