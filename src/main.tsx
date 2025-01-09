@@ -13,6 +13,10 @@ const queryClient = new QueryClient()
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
+
+import { loginUseCase } from './domains/auth/domain/use-cases/login'
+import { InMemoryAuthRepository } from '@/domains/auth/gateways/InMemoryAuthRepository'
+
 // Create a new router instance
 const router = createRouter({
   routeTree,
@@ -24,6 +28,14 @@ const router = createRouter({
   context: {
     i18n,
     queryClient,
+    loginUseCase: loginUseCase(new InMemoryAuthRepository([{
+      id: 1,
+      email: 'fverin.recrutement@gmail.com',
+      password: 'test',
+      role: 'DRIVER',
+      username: 'fansoa',
+      token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI'
+    }]))
   }
 })
 
