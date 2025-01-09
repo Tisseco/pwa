@@ -2,10 +2,17 @@ import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
+import i18n from '../../../domains/shared/services/i18next/initTranslation'
+
 // Import the generated route tree
 import { routeTree } from '../../../routeTree.gen';
 // Create a new router instance
-const router = createRouter({ routeTree })
+const router = createRouter({
+    routeTree,
+    context: {
+      i18n
+    }
+})
 
 describe('Shared | Integration', () => {
 
