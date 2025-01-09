@@ -11,6 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.63.0",
     "@tanstack/react-router": "^1.95.1",
     "i18next": "^24.2.1",
     "i18next-browser-languagedetector": "^8.0.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@tanstack/eslint-plugin-query": "^5.62.16",
     "@tanstack/router-devtools": "^1.95.1",
     "@tanstack/router-plugin": "^1.95.1",
     "@testing-library/dom": "^10.4.0",
