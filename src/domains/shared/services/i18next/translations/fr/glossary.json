@@ -1,4 +1,6 @@
 {
     "home": "Accueil",
-    "about": "À Propos"
+    "about": "À Propos",
+    "password": "Mot de passe",
+    "login": "Se connecter"
 }

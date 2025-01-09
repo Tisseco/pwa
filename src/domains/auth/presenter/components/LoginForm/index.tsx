@@ -4,13 +4,15 @@ import { Button } from "@/domains/shared/presenter/components/ui/button"
 import { FormProvider } from "react-hook-form"
 import { InputControlled } from "@/domains/shared/presenter/components/InputControlled"
 import { useLoginForm } from "@/domains/auth/presenter/components/LoginForm/hooks/useLoginForm"
+import { useRouteContext } from "@tanstack/react-router"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const { i18n: { t } } = useRouteContext({ from: '__root__' })
   const { methods, onSubmit } = useLoginForm()
-  
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <FormProvider {...methods}>
@@ -21,7 +23,7 @@ export function LoginForm({
                   <Puzzle className="size-6" />
               </div>
               <span className="sr-only">Tisseco</span>
-              <h1 className="text-xl font-bold">Welcome to Tisseco</h1>
+              <h1 className="text-xl font-bold">{t('welcome.to.tisseco')}</h1>
             </div>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
@@ -34,12 +36,12 @@ export function LoginForm({
                 <InputControlled
                   type="password"
                   name="password"
-                  label="Password"
+                  label={t('glossary:password')}
                   placeholder="••••••••"
                   autoComplete="current-password"
                 />
               </div>
-              <Button type="submit" className="w-full">Login</Button>
+              <Button type="submit" className="w-full">{t('glossary:login')}</Button>
             </div>
           </div>
         </form>
