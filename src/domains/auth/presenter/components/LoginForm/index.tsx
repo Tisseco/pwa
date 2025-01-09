@@ -1,21 +1,20 @@
 import { Puzzle } from "lucide-react"
 import { cn } from "@/domains/shared/presenter/lib/utils"
 import { Button } from "@/domains/shared/presenter/components/ui/button"
-import { FormProvider, useForm } from "react-hook-form"
+import { FormProvider } from "react-hook-form"
 import { InputControlled } from "@/domains/shared/presenter/components/InputControlled"
+import { useLoginForm } from "@/domains/auth/presenter/components/LoginForm/hooks/useLoginForm"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const methods = useForm()
-
-  const onSubmit = (data: { email?: string, password?: string }) => console.log(data)
-
+  const { methods, onSubmit } = useLoginForm()
+  
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-md">
