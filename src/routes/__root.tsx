@@ -4,6 +4,7 @@ import PWABadge from '../domains/shared/presenter/components/PWABadge'
 import { i18n } from 'i18next'
 import { QueryClient } from '@tanstack/react-query'
 import { AuthRepository } from '@/domains/auth/domain/AuthRepository'
+import { Toaster } from '@/domains/shared/presenter/components/ui/toaster'
 
 export const Route = createRootRouteWithContext<{
     i18n: i18n
@@ -28,6 +29,7 @@ function Root() {
             </div>
             <hr />
             <Outlet />
+            <Toaster />
             <PWABadge />
         </>
     )
