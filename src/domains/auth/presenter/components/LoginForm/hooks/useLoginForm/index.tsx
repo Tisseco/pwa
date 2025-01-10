@@ -6,10 +6,16 @@ import { LoginPayload } from "@/domains/auth/domain/types/loginTypes"
 import { useRouteContext } from "@tanstack/react-router"
 import { useToast } from "@/domains/shared/presenter/hooks/use-toast"
 import { useAuthStore } from "@/domains/auth/store/AuthStore"
+import { t } from "i18next"
 
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(4),
+  email: z.string().email(t('errorValidation:your.email.is.invalid')),
+  password: z.string({ errorMap: (issue, ctx)=> {
+    if (issue.code === 'too_small') return {
+      message: t('errorValidation:your.input.name.must.contain.at.least', { inputName: t("glossary:password").toLowerCase(), number: issue.minimum })
+    }
+    return { message: ctx.defaultError }
+  }}).min(4),
 })
 
 type Schema = z.infer<typeof schema>

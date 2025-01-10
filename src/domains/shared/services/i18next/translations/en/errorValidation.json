@@ -1,1 +1,4 @@
-{}
+{
+    "your.input.name.must.contain.at.least": "Your {{inputName}} must contain at least {{number}} characters",
+    "your.email.is.invalid": "Your email is invalid"
+}
