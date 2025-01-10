@@ -1,13 +1,7 @@
 import * as React from "react"
 import {
-  BookOpen,
-  Bot,
-  Frame,
-  Map,
-  PieChart,
   Puzzle,
-  Settings2,
-  SquareTerminal,
+  Truck,
 } from "lucide-react"
 
 import { NavMain } from "@/domains/shared/presenter/components/nav-main"
@@ -21,98 +15,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  SidebarTrigger,
 } from "@/domains/shared/presenter/components/ui/sidebar"
-import { Link } from "@tanstack/react-router"
-import { Separator } from "./ui/separator"
+import { Link, useRouteContext, useRouter, useRouterState } from "@tanstack/react-router"
 import { useAuthStore } from "@/domains/auth/store/AuthStore"
 
 // This is sample data.
 const data = {
   navMain: [
     {
-      title: "Playground",
+      title: "Driver",
       url: "#",
-      icon: SquareTerminal,
+      icon: Truck,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+          title: "Scheduled tours",
+          url: "/scheduled-tours",
+        }
       ],
     },
   ]
@@ -120,12 +39,13 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user } = useAuthStore()
+  const { i18n: { t } } = useRouteContext({ from:"__root__" })
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar {...props}>
       <SidebarHeader>
-        <SidebarMenu className="flex flex-row items-center justify-between">
-          <SidebarMenuItem className="w-full">
+        <SidebarMenu>
+          <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
@@ -138,14 +58,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
-            <Separator orientation="vertical"  />
-          <SidebarMenuItem>
-            <SidebarTrigger className="w-10 h-10"/>
-          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain 
+          items={[{
+            title: t("glossary:driver"),
+            url: "#",
+            icon: Truck,
+            isActive: true,
+            items: [
+              {
+                title: t("common:scheduled.tours"),
+                url: "/scheduled-tours",
+              }
+            ]
+          }]}
+        />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={{name: user?.name || 'Guest'}} />
