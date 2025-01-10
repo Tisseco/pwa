@@ -1,13 +1,11 @@
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
   Map,
   PieChart,
+  Puzzle,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -15,14 +13,19 @@ import {
 import { NavMain } from "@/domains/shared/presenter/components/nav-main"
 import { NavProjects } from "@/domains/shared/presenter/components/nav-projects"
 import { NavUser } from "@/domains/shared/presenter/components/nav-user"
-import { TeamSwitcher } from "@/domains/shared/presenter/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
+  SidebarTrigger,
 } from "@/domains/shared/presenter/components/ui/sidebar"
+import { Link } from "@tanstack/react-router"
+import { Separator } from "./ui/separator"
 
 // This is sample data.
 const data = {
@@ -31,23 +34,6 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Playground",
@@ -158,7 +144,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <SidebarMenu className="flex flex-row items-center justify-between">
+          <SidebarMenuItem className="w-full">
+            <SidebarMenuButton size="lg" asChild>
+              <Link to="/">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Puzzle className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold">Tisseco</span>
+                  <span className="">v0.0.0</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+            <Separator orientation="vertical"  />
+          <SidebarMenuItem>
+            <SidebarTrigger className="w-10 h-10"/>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
