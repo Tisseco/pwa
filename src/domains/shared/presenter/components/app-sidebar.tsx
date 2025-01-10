@@ -16,26 +16,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/domains/shared/presenter/components/ui/sidebar"
-import { Link, useRouteContext, useRouter, useRouterState } from "@tanstack/react-router"
+import { Link, useRouteContext } from "@tanstack/react-router"
 import { useAuthStore } from "@/domains/auth/store/AuthStore"
-
-// This is sample data.
-const data = {
-  navMain: [
-    {
-      title: "Driver",
-      url: "#",
-      icon: Truck,
-      isActive: true,
-      items: [
-        {
-          title: "Scheduled tours",
-          url: "/scheduled-tours",
-        }
-      ],
-    },
-  ]
-}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user } = useAuthStore()
