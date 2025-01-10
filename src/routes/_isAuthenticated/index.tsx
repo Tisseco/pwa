@@ -17,6 +17,6 @@ function RouteComponent() {
         }
       ]}
     >
-        <div>scheduler-tour</div>
+        <div>Home</div>
     </HeaderLayout>)
 }
