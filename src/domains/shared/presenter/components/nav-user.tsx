@@ -17,6 +17,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/domains/shared/presenter/components/ui/sidebar"
+import { useRouteContext } from "@tanstack/react-router"
 
 export function NavUser({
   user,
@@ -26,6 +27,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { i18n: { t } } = useRouteContext({ from: "__root__" })
 
   return (
     <SidebarMenu>
@@ -38,7 +40,7 @@ export function NavUser({
             >
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <>
-                  <span className="truncate text-xs">Logged as</span>
+                  <span className="truncate text-xs">{t("common:logged.as")}</span>
                   <span className="truncate font-semibold">{user.name}</span>
                 </>
               </div>
@@ -53,7 +55,7 @@ export function NavUser({
           >
             <DropdownMenuItem>
               <LogOut />
-              Log out
+              {t("common:log.out")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
