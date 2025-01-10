@@ -17,7 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/domains/shared/presenter/components/ui/sidebar"
-import { Link } from "@tanstack/react-router"
+import { Link, useRouteContext } from "@tanstack/react-router"
 
 export function NavMain({
   items,
@@ -33,9 +33,11 @@ export function NavMain({
     }[]
   }[]
 }) {
+  const { i18n: { t }} = useRouteContext({ from: "__root__" })
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("glossary:application")}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
