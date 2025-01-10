@@ -7,9 +7,23 @@ import i18n from '@/domains/shared/services/i18next/initTranslation'
 import { InMemoryAuthRepository } from "@/domains/auth/gateways/InMemoryAuthRepository"
 import { loginUseCase } from "@/domains/auth/domain/use-cases/login"
 import userEvent from "@testing-library/user-event"
+import { useNavigate } from "@tanstack/react-router";
 
 const queryClient = new QueryClient()
+
+// Partial mock of @tanstack/react-router
+vi.mock("@tanstack/react-router", async () => {
+  const actual = await vi.importActual("@tanstack/react-router"); // Import the original exports
+  const navigateMock = vi.fn(); // Mock for useNavigate
+  return {
+    ...actual, // Preserve the original exports
+    useNavigate: () => navigateMock, // Replace useNavigate with a mock
+  };
+});
+
+
 describe('Auth | Integration | Use-cases | Login', () => {
+  const navigateMock = useNavigate();
 
   beforeEach(async () => {
     const router = createRouter({
@@ -112,7 +126,7 @@ describe('Auth | Integration | Use-cases | Login', () => {
     expect(parsedAuthLocalStorageItem).toEqual(expectedAuthStore)
 
     // THEN User should be redirect on Home page
-    // expect(navigateMock).toHaveBeenCalledWith({ to: '/' });
+    expect(navigateMock).toHaveBeenCalledWith({ to: '/' });
   })
 
 })
