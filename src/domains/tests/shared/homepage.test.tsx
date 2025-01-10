@@ -20,6 +20,7 @@ const router = createRouter({
         {children}
       </QueryClientProvider>
     ),
+    // @ts-expect-error: In bounded integration tests, importing the full context is unnecessary, unlike in a regular context.
     context: {
       i18n,
       queryClient,
