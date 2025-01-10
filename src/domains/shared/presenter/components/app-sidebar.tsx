@@ -59,7 +59,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={{name: user?.name || 'Guest'}} />
+        <NavUser user={{name: user?.name || t("common:guest")}} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
