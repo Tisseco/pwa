@@ -1,7 +1,5 @@
-import { AuthAccessToken } from "@/domains/shared/entities/authAccessToken"
 import { User } from "@/domains/shared/entities/user"
-
-export type Token = Readonly<Pick<AuthAccessToken, 'abilities' | 'expiresAt' | 'lastUsedAt' | 'name' | 'type'> & { token: string }>
+import { Token } from "@/domains/auth/domain/types/authSharedTypes"
 
 export type LoginPayload = Readonly<Pick<User, 'email' | 'password'>>
 
