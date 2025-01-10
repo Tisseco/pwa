@@ -11,7 +11,6 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/domains/shared/presenter/components/nav-main"
-import { NavProjects } from "@/domains/shared/presenter/components/nav-projects"
 import { NavUser } from "@/domains/shared/presenter/components/nav-user"
 import {
   Sidebar,
@@ -30,11 +29,6 @@ import { useAuthStore } from "@/domains/auth/store/AuthStore"
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Playground",
@@ -121,29 +115,12 @@ const data = {
         },
       ],
     },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  ]
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user } = useAuthStore()
-  
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -169,7 +146,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={{name: user?.name || 'Guest'}} />
