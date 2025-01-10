@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/domains/shared/presenter/components/ui/breadcrumb'
 import { Separator } from '@/domains/shared/presenter/components/ui/separator'
 import { SidebarTrigger } from '@/domains/shared/presenter/components/ui/sidebar'
+import { ReactNode } from 'react'
 
 export function HeaderLayout({ breadcrumbItemList, children } : { breadcrumbItemList : { link?: string, label: string, hiddenIfMd: boolean }[], children: ReactNode }) {
   return (
