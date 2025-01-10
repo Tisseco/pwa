@@ -10,7 +10,7 @@ import { cn } from "@/domains/shared/presenter/lib/utils"
 import { Button } from "@/domains/shared/presenter/components/ui/button"
 import { Input } from "@/domains/shared/presenter/components/ui/input"
 import { Separator } from "@/domains/shared/presenter/components/ui/separator"
-import { Sheet, SheetContent } from "@/domains/shared/presenter/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/domains/shared/presenter/components/ui/sheet"
 import { Skeleton } from "@/domains/shared/presenter/components/ui/skeleton"
 import {
   Tooltip,
@@ -18,6 +18,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/domains/shared/presenter/components/ui/tooltip"
+
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -162,6 +164,8 @@ const Sidebar = React.forwardRef<
     side?: "left" | "right"
     variant?: "sidebar" | "floating" | "inset"
     collapsible?: "offcanvas" | "icon" | "none"
+    accessibilitySidebarTitle: string
+    accessibilitySidebarDescription: string
   }
 >(
   (
@@ -169,6 +173,8 @@ const Sidebar = React.forwardRef<
       side = "left",
       variant = "sidebar",
       collapsible = "offcanvas",
+      accessibilitySidebarTitle,
+      accessibilitySidebarDescription,
       className,
       children,
       ...props
@@ -206,6 +212,12 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
+            <VisuallyHidden.Root>
+              <SheetHeader>
+                  <SheetTitle>{accessibilitySidebarTitle}</SheetTitle>
+                  <SheetDescription>{accessibilitySidebarDescription}</SheetDescription>
+              </SheetHeader>
+            </VisuallyHidden.Root>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
