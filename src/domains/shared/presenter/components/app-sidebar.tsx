@@ -26,6 +26,7 @@ import {
 } from "@/domains/shared/presenter/components/ui/sidebar"
 import { Link } from "@tanstack/react-router"
 import { Separator } from "./ui/separator"
+import { useAuthStore } from "@/domains/auth/store/AuthStore"
 
 // This is sample data.
 const data = {
@@ -141,6 +142,8 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useAuthStore()
+  
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -169,7 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={{name: user?.name || 'Guest'}} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
