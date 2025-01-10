@@ -1,4 +1,9 @@
 {
     "welcome.to.tisseco": "Welcome to Tisseco!",
-    "something.went.wrong": "Something went wrong."
+    "something.went.wrong": "Something went wrong.",
+    "scheduled.tours": "Scheduled tours",
+    "main.navigation": "Main navigation",
+    "logged.as": "Logged as",
+    "log.out": "Log out",
+    "guest": "Guest"
 }

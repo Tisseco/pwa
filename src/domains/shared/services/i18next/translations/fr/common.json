@@ -1,4 +1,9 @@
 {
     "welcome.to.tisseco": "Bienvenue chez Tisseco!",
-    "something.went.wrong": "Quelque chose s'est mal passé."
+    "something.went.wrong": "Quelque chose s'est mal passé.",
+    "scheduled.tours": "Tournées planifiées",
+    "main.navigation": "Navigation principale",
+    "logged.as": "Connecté en tant que",
+    "log.out": "Se déconnecter",
+    "guest": "Invité"
 }
