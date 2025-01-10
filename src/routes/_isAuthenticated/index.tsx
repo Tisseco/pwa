@@ -1,9 +1,22 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { HeaderLayout } from '@/domains/shared/presenter/Layouts/HeaderLayout'
+import { createFileRoute, useRouteContext } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_isAuthenticated/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>Home</div>
+    const { i18n: { t } } = useRouteContext({ from: '__root__' })
+  return (
+    <HeaderLayout
+      breadcrumbItemList={[
+        { 
+          link: '/',
+          label: t('glossary:home'),
+          hiddenIfMd: true
+        }
+      ]}
+    >
+        <div>scheduler-tour</div>
+    </HeaderLayout>)
 }
