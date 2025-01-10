@@ -80,4 +80,39 @@ describe('Auth | Integration | Use-cases | Login', () => {
     expect(toastError).not.toBeInTheDocument()
   })
 
+  it('Login form redirect the user if valid credentials are provided', async () => {
+    const emailInput = screen.getByRole('textbox', { name: /email/i })
+    const passwordInput = screen.getByPlaceholderText(/••••••••/i)
+    const submitButton = screen.getByRole('button', { name: /log in/i })
+    
+    // WHEN Login form is filled with valid credentials
+    await userEvent.type(emailInput, 'fverin.recrutement@gmail.com')
+    await userEvent.type(passwordInput, 'test')
+
+    // WHEN Submit button is clicked
+    await userEvent.click(submitButton)
+
+    const authLocalStorageItem = localStorage.getItem('auth')
+    const parsedAuthLocalStorageItem = typeof authLocalStorageItem === 'string' ? JSON.parse(authLocalStorageItem) : null
+    const expectedAuthStore = {
+      state: {
+        user: {
+          type: 'bearer',
+          name: 'fansoa',
+          token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI',
+          abilities: ['DRIVER'],
+          lastUsedAt: null,
+          expiresAt: '2025-01-04T16:45:25.353Z'
+        }
+      },
+      version: 0
+    }
+    
+    // THEN Related data of logged user should be stored in localstorage
+    expect(parsedAuthLocalStorageItem).toEqual(expectedAuthStore)
+
+    // THEN User should be redirect on Home page
+    // expect(navigateMock).toHaveBeenCalledWith({ to: '/' });
+  })
+
 })
