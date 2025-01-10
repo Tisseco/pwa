@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom/vitest'
 
+vi.mock('zustand') // to make it work like Jest (auto-mocking)
+
 // Explanation:
 // The @radix-ui/react-toast library uses hasPointerCapture to determine pointer interactions (e.g., hover states).
 // JSDOM, used for testing, does not support this API natively, which causes errors in tests.
