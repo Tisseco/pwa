@@ -7,17 +7,22 @@ export const Route = createFileRoute('/_isAuthenticated/scheduled-tours')({
 
 function RouteComponent() {
   const { i18n: { t } } = useRouteContext({ from:'__root__' })
-  const breadcrumbItemList=[
-    { link: '/', label: 'Home', hiddenIfMd: true },
-    {
-      label: t('common:scheduled.tours'),
-      hiddenIfMd: false,
-    },
-  ]
   
   return (
-    <HeaderLayout breadcrumbItemList={breadcrumbItemList}>
-      <div>scheduler-tour</div>
+    <HeaderLayout 
+      breadcrumbItemList={[
+        { 
+          link: '/',
+          label: t('glossary:home'),
+          hiddenIfMd: true
+        },
+        {
+          label: t('common:scheduled.tours'),
+          hiddenIfMd: false,
+        },
+      ]}
+    >
+      <div>Scheduled tours</div>
     </HeaderLayout>
   )
 }
