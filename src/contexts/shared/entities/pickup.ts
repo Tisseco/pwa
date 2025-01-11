@@ -1,4 +1,4 @@
-import { UniqueId, FillingLevel, ContainerCondition } from "@/contexts/shared/entities/shared-kernel"
+import { UniqueId, FillingLevel, ContainerCondition, Date } from "@/contexts/shared/entities/shared-kernel"
 
 export type Pickup = {
   id: UniqueId
@@ -6,6 +6,6 @@ export type Pickup = {
   scheduledTourId: UniqueId
   fillingLevel: FillingLevel
   condition: ContainerCondition
-  pickedUpAt: string
+  pickedUpAt: Date
   weight: number
 }

@@ -1,4 +1,4 @@
-import { UniqueId, VehicleFuelType, VehicleStatus, VehicleType } from "@/contexts/shared/entities/shared-kernel"
+import { Date, UniqueId, VehicleFuelType, VehicleStatus, VehicleType } from "@/contexts/shared/entities/shared-kernel"
 
 export type Vehicle = {
   id: UniqueId
@@ -11,7 +11,7 @@ export type Vehicle = {
   type: VehicleType
   fuelType: VehicleFuelType
   mileage: number
-  purchaseDate: string
+  purchaseDate: Date
   purchasePrice: number
   status: VehicleStatus
 }

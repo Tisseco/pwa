@@ -1,4 +1,5 @@
 export type UniqueId = number
+export type Date = string
 
 export type Role =
   | 'SUPERADMIN'

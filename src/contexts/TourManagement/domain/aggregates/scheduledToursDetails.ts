@@ -14,14 +14,14 @@ export type ScheduledTourDetails = ScheduledTour & {
   userScheduler: User
   vehicle: Vehicle
   tour: Tour & {
-    tourSteps: TourStep & {
+    tourSteps: (TourStep & {
       site: Site & {
-        areas: Area & {
+        areas: (Area & {
           container: Container
-        }[]
+        })[]
         address: Address
       }
-    }[] 
+    })[] 
   }
   pickups: Pickup[]
 }

@@ -1,4 +1,4 @@
-import { Role, UniqueId } from "@/contexts/shared/entities/shared-kernel";
+import { Date, Role, UniqueId } from "@/contexts/shared/entities/shared-kernel";
 
 export type User = {
   id : UniqueId
@@ -6,6 +6,6 @@ export type User = {
   email : string
   password : string
   role : Role
-  createdAt : string
-  updatedAt : string
+  createdAt : Date
+  updatedAt : Date
 }
