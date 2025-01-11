@@ -30,3 +30,7 @@ export type SiteType =
   | 'SORTING CENTER'
   | 'SHOP'
   | 'CONTAINER'
+
+export type AreaSize =
+  | 'SMALL'
+  | 'LARGE'
