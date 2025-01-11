@@ -1,10 +1,12 @@
 "use client"
 
+import { useRouteContext } from "@tanstack/react-router"
+import { useAuth } from "@/domains/auth/presenter/hooks/useAuth"
+
 import {
   ChevronsUpDown,
   LogOut,
 } from "lucide-react"
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +19,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/domains/shared/presenter/components/ui/sidebar"
-import { useRouteContext } from "@tanstack/react-router"
 
 export function NavUser({
   user,
@@ -28,6 +29,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const { i18n: { t } } = useRouteContext({ from: "__root__" })
+  const logout = useAuth()
 
   return (
     <SidebarMenu>
@@ -53,7 +55,7 @@ export function NavUser({
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logout()}>
               <LogOut />
               {t("common:log.out")}
             </DropdownMenuItem>
