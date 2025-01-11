@@ -68,3 +68,10 @@ export type ContainerColor =
 export type ContainerSize =
   | 'SMALL'
   | 'LARGE'
+
+export type FillingLevel =
+  | 'EMPTY'
+  | 'ALMOST EMPTY'
+  | 'HALF FULL'
+  | 'NEARLY FULL'
+  | 'FULL'
