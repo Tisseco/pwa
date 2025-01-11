@@ -1,5 +1,5 @@
 import { createFileRoute, useRouteContext } from '@tanstack/react-router'
-import { HeaderLayout } from '@/domains/shared/presenter/Layouts/HeaderLayout'
+import { HeaderLayout } from '@/contexts/shared/presenter/Layouts/HeaderLayout'
 
 export const Route = createFileRoute('/_isAuthenticated/scheduled-tours')({
   component: RouteComponent,

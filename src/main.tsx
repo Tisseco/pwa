@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import '@/index.css'
 
-import i18n from './domains/shared/services/i18next/initTranslation'
+import i18n from '@/contexts/shared/services/i18next/initTranslation'
 import {
   QueryClient,
   QueryClientProvider,
@@ -14,10 +14,10 @@ const queryClient = new QueryClient()
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
-import { loginUseCase } from './domains/auth/domain/use-cases/login'
-import { InMemoryAuthRepository } from '@/domains/auth/gateways/InMemoryAuthRepository'
-import { logoutUseCase } from './domains/auth/domain/use-cases/logout'
-import { useAuthStore } from './domains/auth/store/AuthStore'
+import { loginUseCase } from '@/contexts/auth/domain/use-cases/login'
+import { InMemoryAuthRepository } from '@/contexts/auth/gateways/InMemoryAuthRepository'
+import { logoutUseCase } from '@/contexts/auth/domain/use-cases/logout'
+import { useAuthStore } from '@/contexts/auth/store/AuthStore'
 
 const authRepositoryInstance = new InMemoryAuthRepository([{
   id: 1,
