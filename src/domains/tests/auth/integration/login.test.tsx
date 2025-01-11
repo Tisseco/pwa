@@ -1,56 +1,54 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { render, screen, within } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 import { routeTree } from "@/routeTree.gen"
 import i18n from '@/domains/shared/services/i18next/initTranslation'
 import { InMemoryAuthRepository } from "@/domains/auth/gateways/InMemoryAuthRepository"
 import { loginUseCase } from "@/domains/auth/domain/use-cases/login"
-import userEvent from "@testing-library/user-event"
-import { useNavigate } from "@tanstack/react-router";
+import { logoutUseCase } from "@/domains/auth/domain/use-cases/logout"
+import { useAuthStore } from "@/domains/auth/store/AuthStore"
+
+const authRepositoryInstance = new InMemoryAuthRepository([{
+  id: 1,
+  email: 'fverin.recrutement@gmail.com',
+  password: 'test',
+  role: 'DRIVER',
+  username: 'fansoa',
+  token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI'
+}])
 
 const queryClient = new QueryClient()
 
-// Partial mock of @tanstack/react-router
-vi.mock("@tanstack/react-router", async () => {
-  const actual = await vi.importActual("@tanstack/react-router"); // Import the original exports
-  const navigateMock = vi.fn(); // Mock for useNavigate
-  return {
-    ...actual, // Preserve the original exports
-    useNavigate: () => navigateMock, // Replace useNavigate with a mock
-  };
-});
+export function App() {
+  const { user } = useAuthStore()
 
+  const router = createRouter({
+    routeTree,
+    Wrap: ({ children }) => (
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+    ),
+    context: {
+      i18n,
+      queryClient,
+      loginUseCase: loginUseCase(authRepositoryInstance),
+      logoutUseCase: logoutUseCase(authRepositoryInstance),
+      user
+    }
+  })
+
+  return <RouterProvider router={router} />
+}
 
 describe('Auth | Integration | Use-cases | Login', () => {
-  const navigateMock = useNavigate();
 
   beforeEach(async () => {
-    const router = createRouter({
-      routeTree,
-      basepath: '/login',
-      Wrap: ({ children }) => (
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      ),
-      // @ts-expect-error: In bounded integration tests, importing the full context is unnecessary, unlike in a regular context.
-      context: {
-        i18n,
-        queryClient,
-        loginUseCase: loginUseCase(new InMemoryAuthRepository([{
-          id: 1,
-          email: 'fverin.recrutement@gmail.com',
-          password: 'test',
-          role: 'DRIVER',
-          username: 'fansoa',
-          token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI'
-        }]))
-      }
-    })
     
     // GIVEN Login page is mounted
-    render(<RouterProvider router={router} />)
+    render(<App />)
 
     // THEN Welcome message should be visible 
     const loginPage = await screen.findByRole('heading', { name: /welcome to tisseco!/i })
@@ -127,7 +125,8 @@ describe('Auth | Integration | Use-cases | Login', () => {
     expect(parsedAuthLocalStorageItem).toEqual(expectedAuthStore)
 
     // THEN User should be redirect on Home page
-    expect(navigateMock).toHaveBeenCalledWith({ to: '/' });
+    const text = await screen.findByText(/application/i)
+    expect(text).toBeVisible()
   })
 
 })
