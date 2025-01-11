@@ -25,3 +25,8 @@ export type VehicleStatus =
 export type VehicleFuelType =
   | 'GAZOLE'
   | 'ESSENCE'
+
+export type SiteType =
+  | 'SORTING CENTER'
+  | 'SHOP'
+  | 'CONTAINER'
