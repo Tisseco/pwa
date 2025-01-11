@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useMutation } from "@tanstack/react-query"
 import { LoginPayload } from "@/domains/auth/domain/types/loginTypes"
-import { useNavigate, useRouteContext } from "@tanstack/react-router"
+import { useRouteContext } from "@tanstack/react-router"
 import { useToast } from "@/domains/shared/presenter/hooks/use-toast"
 import { useAuthStore } from "@/domains/auth/store/AuthStore"
 import { t } from "i18next"
@@ -30,7 +30,6 @@ export const useLoginForm = () => {
   const { i18n: { t },loginUseCase } = useRouteContext({ from: '__root__' })
   const { toast } = useToast()
   const { storeUser } = useAuthStore()
-  const navigate = useNavigate()
 
   const methods = useForm<Schema>({ defaultValues: {
     email: '',
@@ -49,8 +48,7 @@ export const useLoginForm = () => {
         return
       }
       storeUser(data)
-      navigate({ to: '/' })
-    }
+    },
 })
 
   return {
