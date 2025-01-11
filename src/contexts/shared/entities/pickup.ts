@@ -7,5 +7,5 @@ export type Pickup = {
   fillingLevel: FillingLevel
   condition: ContainerCondition
   pickedUpAt: Date
-  weight: number
+  weight?: number | null
 }
