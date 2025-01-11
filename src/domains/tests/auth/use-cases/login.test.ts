@@ -3,7 +3,7 @@ import { InMemoryAuthRepository } from "@/domains/auth/gateways/InMemoryAuthRepo
 
 describe('Auth | Functional | Use-cases | Login', () => {
 
-  // GIVEN login useCase is instancified with InMemoryRepository
+  // GIVEN login use case is instancified with InMemoryRepository
   const loginUseCaseWithInMemoryAuthRepository = loginUseCase(new InMemoryAuthRepository([{
     id: 1,
     email: 'fverin.recrutement@gmail.com',
@@ -14,10 +14,10 @@ describe('Auth | Functional | Use-cases | Login', () => {
   }]))
 
   it('Should be called with valid credentials', async () => {
-    // WHEN login use-cases is called with valid credentials
+    // WHEN login use case is called with valid credentials
     const loginUseCaseCalledWithValidCredentials = await loginUseCaseWithInMemoryAuthRepository({ email: 'fverin.recrutement@gmail.com', password: 'test'})
 
-    //THEN login use-cases shoud return token
+    //THEN login use case should return a token
     expect(loginUseCaseCalledWithValidCredentials).toEqual({
       type: 'bearer',
       name: 'fansoa',
@@ -29,13 +29,13 @@ describe('Auth | Functional | Use-cases | Login', () => {
   })
 
   it('Should be called with invalid credentials', async () => {
-    // WHEN login use-cases is called with valid credentials
+    // WHEN login use case is called with invalid credentials
     const loginUseCaseCalledWithInvalidCredentials = await loginUseCaseWithInMemoryAuthRepository({
       email: 'fverin.recrutement@gmail.com',
       password: 'wrong password'
     })
 
-    // THEN login use-cases shoud return token
+    // THEN login use case should return an error message
     expect(loginUseCaseCalledWithInvalidCredentials).toEqual({
       errors: [
         { message: "Invalid user credentials" }
