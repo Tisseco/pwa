@@ -1,6 +1,7 @@
 import { ScheduledTourDetails } from "@/contexts/TourManagement/domain/aggregates/scheduledToursDetails"
 import { driverFetchHisOwnScheduledTourDetailsUseCase } from "@/contexts/TourManagement/domain/use-cases/driverFetchHisOwnScheduledTours"
 import { InMemoryScheduledTourDetailsRepository } from "@/contexts/TourManagement/gateways/InMemorySheduledTourDetailsRepository"
+import { scheduledTourDetailsRepositoryDataSourceMock } from "@/contexts/tests/TourManagement/use-cases/mock/scheduledTourDetailsRepositoryDataSourceMock"
 
 describe('Auth | Functional | Use-cases | TourManagement', () => {
 
@@ -329,7 +330,7 @@ describe('Auth | Functional | Use-cases | TourManagement', () => {
 
   it('Should return a list with one item', async () => {
     // GIVEN driverFetchHisOwnScheduledToursDetails use case is instancified with InMemoryRepository
-    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(dataSource))
+    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock))
     
     // WHEN driverFetchHisOwnScheduledToursDetails use case is called with an existant id
     const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository(1)
