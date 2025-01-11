@@ -8,6 +8,7 @@ type AuthState = {
 
 type AuthActions = {
   storeUser: (user: Token) => void
+  deleteUser: () => void
 }
 
 export const useAuthStore = create<AuthState & AuthActions>()(
@@ -15,6 +16,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
     (set) => ({
       user: null,
       storeUser: (user) => set(() => ({ user })),
+      deleteUser: () => set(() => ({ user: null }))
     }),
     { name: 'auth' }
   )
