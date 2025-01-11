@@ -13,3 +13,17 @@ beforeAll(() => {
     writable: true,
   });
 });
+
+if (!window.matchMedia) {
+  window.matchMedia = (query) => ({
+    matches: false, // Simulate the behavior of media request
+    media: query,
+    onchange: null,
+    addListener: () => {}, // obsolete, but somes libs uses it
+    removeListener: () => {}, // obsolete
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    // @ts-expect-error: Type '() => void' is not assignable to type '{ (event: Event): boolean; (event: Event): boolean; }'.
+    dispatchEvent: () => {},
+  });
+}
