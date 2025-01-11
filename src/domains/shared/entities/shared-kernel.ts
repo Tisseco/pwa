@@ -12,3 +12,16 @@ export type ScheduledTourStatus =
   | 'IN PROGRESS'
   | 'STOPPED'
   | 'FINISHED'
+
+  export type VehicleType =
+  | 'CAR'
+  | 'TRUCK'
+
+export type VehicleStatus =
+  | 'IN SERVICE'
+  | 'UNDER REPAIR'
+  | 'OUT OF SERVICE'
+
+export type VehicleFuelType =
+  | 'GAZOLE'
+  | 'ESSENCE'
