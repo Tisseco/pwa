@@ -6,3 +6,9 @@ export type Role =
   | 'SUPERVISOR'
   | 'DRIVER'
   | 'OPERATOR'
+
+export type ScheduledTourStatus =
+  | 'PENDING'
+  | 'IN PROGRESS'
+  | 'STOPPED'
+  | 'FINISHED'
