@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import { Token } from "@/domains/auth/domain/types/loginTypes"
+import { Token } from "@/domains/auth/domain/types/authSharedTypes"
 
 type AuthState = {
   user: Token | null
