@@ -1,9 +1,9 @@
-import { UniqueId } from "@/contexts/shared/entities/shared-kernel"
+import { ContainerSize, UniqueId } from "@/contexts/shared/entities/shared-kernel"
 
 export type Area = {
   id: UniqueId
   siteId: UniqueId
-  size: number
+  size: ContainerSize
   description: string
   coordinates: {
     latitude: number
