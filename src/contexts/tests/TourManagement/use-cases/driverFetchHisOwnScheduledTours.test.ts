@@ -333,7 +333,7 @@ describe('Auth | Functional | Use-cases | TourManagement', () => {
     const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock, 1))
     
     // WHEN driverFetchHisOwnScheduledToursDetails use case is called with an existant id
-    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository()
+    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository('fakeToken')
     
     // THEN Should return a list with one item
     expect(driverOwnScheduledToursDetails).toEqual(dataSource)
@@ -344,7 +344,7 @@ describe('Auth | Functional | Use-cases | TourManagement', () => {
     const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(dataSource, 2))
     
     // WHEN driverFetchHisOwnScheduledToursDetails use case is invoked with an ID that does not exist
-    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository()
+    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository('fakeToken')
     
     // THEN driverOwnScheduledToursDetails return a empty list
     expect(driverOwnScheduledToursDetails).toEqual([])
