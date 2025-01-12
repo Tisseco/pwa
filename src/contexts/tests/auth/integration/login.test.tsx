@@ -31,6 +31,7 @@ export function App() {
         {children}
       </QueryClientProvider>
     ),
+    // @ts-expect-error: context type must be partial in test environment
     context: {
       i18n,
       queryClient,
