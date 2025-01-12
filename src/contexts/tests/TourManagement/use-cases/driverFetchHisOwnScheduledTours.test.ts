@@ -1,5 +1,5 @@
 import { ScheduledTourDetails } from "@/contexts/TourManagement/domain/aggregates/scheduledToursDetails"
-import { driverFetchHisOwnScheduledTourDetailsUseCase } from "@/contexts/TourManagement/domain/use-cases/driverFetchHisOwnScheduledTours"
+import { driverFetchHisOwnScheduledTourDetailsUseCase } from "@/contexts/TourManagement/domain/use-cases/driverFetchHisOwnScheduledTourDetails"
 import { InMemoryScheduledTourDetailsRepository } from "@/contexts/TourManagement/gateways/InMemorySheduledTourDetailsRepository"
 import { scheduledTourDetailsRepositoryDataSourceMock } from "@/contexts/tests/TourManagement/use-cases/mock/scheduledTourDetailsRepositoryDataSourceMock"
 
@@ -330,10 +330,10 @@ describe('Auth | Functional | Use-cases | TourManagement', () => {
 
   it('Should return a list with one item', async () => {
     // GIVEN driverFetchHisOwnScheduledToursDetails use case is instancified with InMemoryRepository
-    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock))
+    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock, 1))
     
     // WHEN driverFetchHisOwnScheduledToursDetails use case is called with an existant id
-    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository(1)
+    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository()
     
     // THEN Should return a list with one item
     expect(driverOwnScheduledToursDetails).toEqual(dataSource)
@@ -341,10 +341,10 @@ describe('Auth | Functional | Use-cases | TourManagement', () => {
 
   it('Should return an empty list', async () => {
     // GIVEN driverFetchHisOwnScheduledToursDetails use case is instancified with InMemoryRepository
-    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(dataSource))
+    const driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository = driverFetchHisOwnScheduledTourDetailsUseCase(new InMemoryScheduledTourDetailsRepository(dataSource, 2))
     
     // WHEN driverFetchHisOwnScheduledToursDetails use case is invoked with an ID that does not exist
-    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository(8)
+    const driverOwnScheduledToursDetails = await driverFetchHisOwnScheduledTourDetailsUseCaseWithInMemoryScheduledTourDetailsRepository()
     
     // THEN driverOwnScheduledToursDetails return a empty list
     expect(driverOwnScheduledToursDetails).toEqual([])
