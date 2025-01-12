@@ -4,5 +4,6 @@
     "password": "Mot de passe",
     "login": "Se connecter",
     "application": "Application",
-    "driver": "Chauffeur"
+    "driver": "Chauffeur",
+    "cancel": "Annuler"
 }

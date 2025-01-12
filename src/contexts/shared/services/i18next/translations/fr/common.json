@@ -5,5 +5,6 @@
     "main.navigation": "Navigation principale",
     "logged.as": "Connecté en tant que",
     "log.out": "Se déconnecter",
-    "guest": "Invité"
+    "guest": "Invité",
+    "refresh.app": "Relancer l'App"
 }
