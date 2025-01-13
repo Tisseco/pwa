@@ -5,5 +5,7 @@
     "login": "Se connecter",
     "application": "Application",
     "driver": "Chauffeur",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "vehicle": "Vehicule",
+    "delivery": "Livraison"
 }

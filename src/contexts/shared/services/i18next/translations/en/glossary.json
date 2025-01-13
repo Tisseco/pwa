@@ -5,5 +5,7 @@
     "login": "Log in",
     "application": "Application",
     "driver": "Driver",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "vehicle": "Vehicle",
+    "delivery": "Delivery"
 }
