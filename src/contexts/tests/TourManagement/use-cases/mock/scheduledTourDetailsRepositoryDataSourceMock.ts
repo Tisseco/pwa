@@ -319,6 +319,42 @@ export const scheduledTourDetailsRepositoryDataSourceMock = [
       pickedUpAt: '2025-01-04T16:45:25.353Z',
       scheduledTourId: 1,
       weight: 12
+    },
+    {
+      id: 2,
+      areaId: 2,
+      condition: "AVERAGE CONDITION",
+      fillingLevel: 'ALMOST EMPTY',
+      pickedUpAt: '2025-01-04T16:45:25.353Z',
+      scheduledTourId: 1,
+      weight: 12
+    },
+    {
+      id: 3,
+      areaId: 3,
+      condition: "AVERAGE CONDITION",
+      fillingLevel: 'ALMOST EMPTY',
+      pickedUpAt: '2025-01-04T16:45:25.353Z',
+      scheduledTourId: 1,
+      weight: 12
+    },
+    {
+      id: 4,
+      areaId: 4,
+      condition: "AVERAGE CONDITION",
+      fillingLevel: 'ALMOST EMPTY',
+      pickedUpAt: '2025-01-04T16:45:25.353Z',
+      scheduledTourId: 1,
+      weight: 12
+    },
+    {
+      id: 7,
+      areaId: 7,
+      condition: "AVERAGE CONDITION",
+      fillingLevel: 'ALMOST EMPTY',
+      pickedUpAt: '2025-01-04T16:45:25.353Z',
+      scheduledTourId: 1,
+      weight: 12
     }]
   }
 ] as ScheduledTourDetails[]
