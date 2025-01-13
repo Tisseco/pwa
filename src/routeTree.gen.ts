@@ -15,6 +15,7 @@ import { Route as LoginImport } from './routes/login'
 import { Route as IsAuthenticatedImport } from './routes/_isAuthenticated'
 import { Route as IsAuthenticatedIndexImport } from './routes/_isAuthenticated/index'
 import { Route as IsAuthenticatedScheduledToursIndexImport } from './routes/_isAuthenticated/scheduled-tours/index'
+import { Route as IsAuthenticatedScheduledToursScheduledTourIdIndexImport } from './routes/_isAuthenticated/scheduled-tours/$scheduledTourId/index'
 
 // Create/Update Routes
 
@@ -39,6 +40,13 @@ const IsAuthenticatedScheduledToursIndexRoute =
   IsAuthenticatedScheduledToursIndexImport.update({
     id: '/scheduled-tours/',
     path: '/scheduled-tours/',
+    getParentRoute: () => IsAuthenticatedRoute,
+  } as any)
+
+const IsAuthenticatedScheduledToursScheduledTourIdIndexRoute =
+  IsAuthenticatedScheduledToursScheduledTourIdIndexImport.update({
+    id: '/scheduled-tours/$scheduledTourId/',
+    path: '/scheduled-tours/$scheduledTourId/',
     getParentRoute: () => IsAuthenticatedRoute,
   } as any)
 
@@ -74,6 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IsAuthenticatedScheduledToursIndexImport
       parentRoute: typeof IsAuthenticatedImport
     }
+    '/_isAuthenticated/scheduled-tours/$scheduledTourId/': {
+      id: '/_isAuthenticated/scheduled-tours/$scheduledTourId/'
+      path: '/scheduled-tours/$scheduledTourId'
+      fullPath: '/scheduled-tours/$scheduledTourId'
+      preLoaderRoute: typeof IsAuthenticatedScheduledToursScheduledTourIdIndexImport
+      parentRoute: typeof IsAuthenticatedImport
+    }
   }
 }
 
@@ -82,12 +97,15 @@ declare module '@tanstack/react-router' {
 interface IsAuthenticatedRouteChildren {
   IsAuthenticatedIndexRoute: typeof IsAuthenticatedIndexRoute
   IsAuthenticatedScheduledToursIndexRoute: typeof IsAuthenticatedScheduledToursIndexRoute
+  IsAuthenticatedScheduledToursScheduledTourIdIndexRoute: typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
 const IsAuthenticatedRouteChildren: IsAuthenticatedRouteChildren = {
   IsAuthenticatedIndexRoute: IsAuthenticatedIndexRoute,
   IsAuthenticatedScheduledToursIndexRoute:
     IsAuthenticatedScheduledToursIndexRoute,
+  IsAuthenticatedScheduledToursScheduledTourIdIndexRoute:
+    IsAuthenticatedScheduledToursScheduledTourIdIndexRoute,
 }
 
 const IsAuthenticatedRouteWithChildren = IsAuthenticatedRoute._addFileChildren(
@@ -99,12 +117,14 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
 export interface FileRoutesById {
@@ -113,19 +133,26 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/_isAuthenticated/': typeof IsAuthenticatedIndexRoute
   '/_isAuthenticated/scheduled-tours/': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/_isAuthenticated/scheduled-tours/$scheduledTourId/': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/' | '/scheduled-tours'
+  fullPaths:
+    | ''
+    | '/login'
+    | '/'
+    | '/scheduled-tours'
+    | '/scheduled-tours/$scheduledTourId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/scheduled-tours'
+  to: '/login' | '/' | '/scheduled-tours' | '/scheduled-tours/$scheduledTourId'
   id:
     | '__root__'
     | '/_isAuthenticated'
     | '/login'
     | '/_isAuthenticated/'
     | '/_isAuthenticated/scheduled-tours/'
+    | '/_isAuthenticated/scheduled-tours/$scheduledTourId/'
   fileRoutesById: FileRoutesById
 }
 
@@ -157,7 +184,8 @@ export const routeTree = rootRoute
       "filePath": "_isAuthenticated.tsx",
       "children": [
         "/_isAuthenticated/",
-        "/_isAuthenticated/scheduled-tours/"
+        "/_isAuthenticated/scheduled-tours/",
+        "/_isAuthenticated/scheduled-tours/$scheduledTourId/"
       ]
     },
     "/login": {
@@ -169,6 +197,10 @@ export const routeTree = rootRoute
     },
     "/_isAuthenticated/scheduled-tours/": {
       "filePath": "_isAuthenticated/scheduled-tours/index.tsx",
+      "parent": "/_isAuthenticated"
+    },
+    "/_isAuthenticated/scheduled-tours/$scheduledTourId/": {
+      "filePath": "_isAuthenticated/scheduled-tours/$scheduledTourId/index.tsx",
       "parent": "/_isAuthenticated"
     }
   }

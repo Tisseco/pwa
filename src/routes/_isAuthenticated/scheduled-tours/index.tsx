@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {
   createFileRoute,
+  useLoaderData,
   useRouteContext,
   useRouter,
 } from '@tanstack/react-router'
 import {
   queryOptions,
   useQueryErrorResetBoundary,
-  useSuspenseQuery,
 } from '@tanstack/react-query'
 import { HeaderLayout } from '@/contexts/shared/presenter/Layouts/HeaderLayout'
-import { Token } from '@/contexts/auth/domain/types/authSharedTypes'
-import { ScheduledTourDetailsRepository } from '@/contexts/TourManagement/domain/ScheduledTourDetailsRepository'
 import { useEffect } from 'react'
 
 import {
@@ -26,15 +24,7 @@ import {
 } from '@/contexts/shared/presenter/components/ui/alert-dialog'
 import { ScheduledTourCatalog } from '@/contexts/TourManagement/presenter/components/ScheduledTourCatalog'
 import { scheduledTourCatalogMap } from '@/contexts/TourManagement/presenter/mappers/scheduledTourCatalogMap'
-
-const createScheduledTourDetailsQueryOptions = (
-  token: Token['token'],
-  driverFetchHisOwnScheduledTourDetailsUseCase: ScheduledTourDetailsRepository['getAllScheduledTourDetailsByAssignedUser'],
-) =>
-  queryOptions({
-    queryKey: ['scheduledTours'],
-    queryFn: () => driverFetchHisOwnScheduledTourDetailsUseCase(token),
-  })
+import { useScheduledTourDetailsStore } from '@/contexts/TourManagement/store/scheduledTourDetailsStore'
 
 export const Route = createFileRoute('/_isAuthenticated/scheduled-tours/')({
   loader: async ({
@@ -45,11 +35,11 @@ export const Route = createFileRoute('/_isAuthenticated/scheduled-tours/')({
     },
   }) =>
     queryClient.ensureQueryData(
-      createScheduledTourDetailsQueryOptions(
-        // @ts-expect-error: temporary ts exception
-        user.token,
-        driverFetchHisOwnScheduledTourDetailsUseCase,
-      ),
+      queryOptions({
+        queryKey: ['scheduledTours'],
+        // @ts-expect-error: user is guaranteed to be non-null; otherwise, they would be redirected to the login page.
+        queryFn: () => driverFetchHisOwnScheduledTourDetailsUseCase(user.token),
+      })
     ),
   component: RouteComponent,
   errorComponent: ({ error }) => {
@@ -93,21 +83,16 @@ export const Route = createFileRoute('/_isAuthenticated/scheduled-tours/')({
 function RouteComponent() {
   const {
     i18n: { t },
-    user,
-    driverFetchHisOwnScheduledTourDetailsUseCase,
   } = useRouteContext({ from: '__root__' })
+  const storeScheduledTourDetailsList = useScheduledTourDetailsStore(({ storeScheduledTourDetailsList }) => storeScheduledTourDetailsList)
 
-  const { data: scheduledTourDetailsList } = useSuspenseQuery(
-    createScheduledTourDetailsQueryOptions(
-      // @ts-expect-error: temporary ts exception
-      user.token,
-      driverFetchHisOwnScheduledTourDetailsUseCase,
-    ),
-  )
+  const data = useLoaderData({ from: '/_isAuthenticated/scheduled-tours/' })
 
-  if ('errors' in scheduledTourDetailsList) {
-    throw new Error(scheduledTourDetailsList.errors?.[0]?.message)
+  if ('errors' in data) {
+    throw new Error(data.errors?.[0]?.message)
   }
+
+  storeScheduledTourDetailsList(data)
 
   return (
     <HeaderLayout
@@ -123,11 +108,7 @@ function RouteComponent() {
         },
       ]}
     >
-      <ScheduledTourCatalog
-        scheduledTourDetailsList={scheduledTourCatalogMap(
-          scheduledTourDetailsList,
-        )}
-      />
+      <ScheduledTourCatalog scheduledTourDetailsList={scheduledTourCatalogMap(data)} />
     </HeaderLayout>
   )
 }

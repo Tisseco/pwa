@@ -60,8 +60,8 @@ export const ScheduledTourCatalog = ({ scheduledTourDetailsList } : { scheduledT
       {scheduledTourDetailsList.map(scheduledTour => {
         return <Link
           key={`scheduledTour-${scheduledTour.id}`} 
-          // to={`/scheduled-tours/${scheduledTour.id}`}
-          to="/scheduled-tours"
+          to='/scheduled-tours/$scheduledTourId'
+          params={{ scheduledTourId: scheduledTour.id.toString() }}
         >
           <TourCard 
             {...scheduledTour}
