@@ -11,11 +11,11 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/domains/shared/presenter/components",
-    "utils": "@/domains/shared/presenter/lib/utils",
-    "ui": "@/domains/shared/presenter/components/ui",
-    "lib": "@/domains/shared/presenter/lib",
-    "hooks": "@/domains/shared/presenter/hooks"
+    "components": "@/contexts/shared/presenter/components",
+    "utils": "@/contexts/shared/presenter/lib/utils",
+    "ui": "@/contexts/shared/presenter/components/ui",
+    "lib": "@/contexts/shared/presenter/lib",
+    "hooks": "@/contexts/shared/presenter/hooks"
   },
   "iconLibrary": "lucide"
 }

@@ -1,5 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { SidebarLayout } from '@/domains/shared/presenter/Layouts/SidebarLayout'
+import { SidebarLayout } from '@/contexts/shared/presenter/Layouts/SidebarLayout'
 
 export const Route = createFileRoute('/_isAuthenticated')({
   beforeLoad: ({context: { user }}) => {

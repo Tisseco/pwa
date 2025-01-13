@@ -14,7 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as IsAuthenticatedImport } from './routes/_isAuthenticated'
 import { Route as IsAuthenticatedIndexImport } from './routes/_isAuthenticated/index'
-import { Route as IsAuthenticatedScheduledToursImport } from './routes/_isAuthenticated/scheduled-tours'
+import { Route as IsAuthenticatedScheduledToursIndexImport } from './routes/_isAuthenticated/scheduled-tours/index'
 
 // Create/Update Routes
 
@@ -35,10 +35,10 @@ const IsAuthenticatedIndexRoute = IsAuthenticatedIndexImport.update({
   getParentRoute: () => IsAuthenticatedRoute,
 } as any)
 
-const IsAuthenticatedScheduledToursRoute =
-  IsAuthenticatedScheduledToursImport.update({
-    id: '/scheduled-tours',
-    path: '/scheduled-tours',
+const IsAuthenticatedScheduledToursIndexRoute =
+  IsAuthenticatedScheduledToursIndexImport.update({
+    id: '/scheduled-tours/',
+    path: '/scheduled-tours/',
     getParentRoute: () => IsAuthenticatedRoute,
   } as any)
 
@@ -60,18 +60,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/_isAuthenticated/scheduled-tours': {
-      id: '/_isAuthenticated/scheduled-tours'
-      path: '/scheduled-tours'
-      fullPath: '/scheduled-tours'
-      preLoaderRoute: typeof IsAuthenticatedScheduledToursImport
-      parentRoute: typeof IsAuthenticatedImport
-    }
     '/_isAuthenticated/': {
       id: '/_isAuthenticated/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IsAuthenticatedIndexImport
+      parentRoute: typeof IsAuthenticatedImport
+    }
+    '/_isAuthenticated/scheduled-tours/': {
+      id: '/_isAuthenticated/scheduled-tours/'
+      path: '/scheduled-tours'
+      fullPath: '/scheduled-tours'
+      preLoaderRoute: typeof IsAuthenticatedScheduledToursIndexImport
       parentRoute: typeof IsAuthenticatedImport
     }
   }
@@ -80,13 +80,14 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface IsAuthenticatedRouteChildren {
-  IsAuthenticatedScheduledToursRoute: typeof IsAuthenticatedScheduledToursRoute
   IsAuthenticatedIndexRoute: typeof IsAuthenticatedIndexRoute
+  IsAuthenticatedScheduledToursIndexRoute: typeof IsAuthenticatedScheduledToursIndexRoute
 }
 
 const IsAuthenticatedRouteChildren: IsAuthenticatedRouteChildren = {
-  IsAuthenticatedScheduledToursRoute: IsAuthenticatedScheduledToursRoute,
   IsAuthenticatedIndexRoute: IsAuthenticatedIndexRoute,
+  IsAuthenticatedScheduledToursIndexRoute:
+    IsAuthenticatedScheduledToursIndexRoute,
 }
 
 const IsAuthenticatedRouteWithChildren = IsAuthenticatedRoute._addFileChildren(
@@ -96,35 +97,35 @@ const IsAuthenticatedRouteWithChildren = IsAuthenticatedRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '': typeof IsAuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/scheduled-tours': typeof IsAuthenticatedScheduledToursRoute
   '/': typeof IsAuthenticatedIndexRoute
+  '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/scheduled-tours': typeof IsAuthenticatedScheduledToursRoute
   '/': typeof IsAuthenticatedIndexRoute
+  '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_isAuthenticated': typeof IsAuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/_isAuthenticated/scheduled-tours': typeof IsAuthenticatedScheduledToursRoute
   '/_isAuthenticated/': typeof IsAuthenticatedIndexRoute
+  '/_isAuthenticated/scheduled-tours/': typeof IsAuthenticatedScheduledToursIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/scheduled-tours' | '/'
+  fullPaths: '' | '/login' | '/' | '/scheduled-tours'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/scheduled-tours' | '/'
+  to: '/login' | '/' | '/scheduled-tours'
   id:
     | '__root__'
     | '/_isAuthenticated'
     | '/login'
-    | '/_isAuthenticated/scheduled-tours'
     | '/_isAuthenticated/'
+    | '/_isAuthenticated/scheduled-tours/'
   fileRoutesById: FileRoutesById
 }
 
@@ -155,19 +156,19 @@ export const routeTree = rootRoute
     "/_isAuthenticated": {
       "filePath": "_isAuthenticated.tsx",
       "children": [
-        "/_isAuthenticated/scheduled-tours",
-        "/_isAuthenticated/"
+        "/_isAuthenticated/",
+        "/_isAuthenticated/scheduled-tours/"
       ]
     },
     "/login": {
       "filePath": "login.tsx"
     },
-    "/_isAuthenticated/scheduled-tours": {
-      "filePath": "_isAuthenticated/scheduled-tours.tsx",
-      "parent": "/_isAuthenticated"
-    },
     "/_isAuthenticated/": {
       "filePath": "_isAuthenticated/index.tsx",
+      "parent": "/_isAuthenticated"
+    },
+    "/_isAuthenticated/scheduled-tours/": {
+      "filePath": "_isAuthenticated/scheduled-tours/index.tsx",
       "parent": "/_isAuthenticated"
     }
   }

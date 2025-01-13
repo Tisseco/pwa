@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import '@/index.css'
 
-import i18n from './domains/shared/services/i18next/initTranslation'
+import i18n from '@/contexts/shared/services/i18next/initTranslation'
 import {
   QueryClient,
   QueryClientProvider,
@@ -14,10 +14,13 @@ const queryClient = new QueryClient()
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
-import { loginUseCase } from './domains/auth/domain/use-cases/login'
-import { InMemoryAuthRepository } from '@/domains/auth/gateways/InMemoryAuthRepository'
-import { logoutUseCase } from './domains/auth/domain/use-cases/logout'
-import { useAuthStore } from './domains/auth/store/AuthStore'
+import { loginUseCase } from '@/contexts/auth/domain/use-cases/login'
+import { InMemoryAuthRepository } from '@/contexts/auth/gateways/InMemoryAuthRepository'
+import { logoutUseCase } from '@/contexts/auth/domain/use-cases/logout'
+import { useAuthStore } from '@/contexts/auth/store/AuthStore'
+import { driverFetchHisOwnScheduledTourDetailsUseCase } from './contexts/TourManagement/domain/use-cases/driverFetchHisOwnScheduledTourDetails'
+import { scheduledTourDetailsRepositoryDataSourceMock } from './contexts/tests/TourManagement/use-cases/mock/scheduledTourDetailsRepositoryDataSourceMock'
+import { InMemoryScheduledTourDetailsRepository } from './contexts/TourManagement/gateways/InMemorySheduledTourDetailsRepository'
 
 const authRepositoryInstance = new InMemoryAuthRepository([{
   id: 1,
@@ -28,6 +31,7 @@ const authRepositoryInstance = new InMemoryAuthRepository([{
   token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI'
 }])
 
+const scheduledTourDetailsRepositoryInstance = new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock, 1)
  
 // For authentication, I need to pass the value of my authStore 
 // into the context of the TanStack Router to redirect users based on their store. 
@@ -48,7 +52,8 @@ const router = createRouter({
     i18n,
     queryClient,
     loginUseCase: loginUseCase(authRepositoryInstance),
-    logoutUseCase: logoutUseCase(authRepositoryInstance)
+    logoutUseCase: logoutUseCase(authRepositoryInstance),
+    driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
   }
 })
 
@@ -74,6 +79,7 @@ export function App() {
       queryClient,
       loginUseCase: loginUseCase(authRepositoryInstance),
       logoutUseCase: logoutUseCase(authRepositoryInstance),
+      driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
       user
     }
   })

@@ -1,4 +1,4 @@
-import { HeaderLayout } from '@/domains/shared/presenter/Layouts/HeaderLayout'
+import { HeaderLayout } from '@/contexts/shared/presenter/Layouts/HeaderLayout'
 import { createFileRoute, useRouteContext } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_isAuthenticated/')({
