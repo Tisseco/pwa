@@ -21,6 +21,8 @@ import { useAuthStore } from '@/contexts/auth/store/AuthStore'
 import { driverFetchHisOwnScheduledTourDetailsUseCase } from './contexts/TourManagement/domain/use-cases/driverFetchHisOwnScheduledTourDetails'
 import { scheduledTourDetailsRepositoryDataSourceMock } from './contexts/tests/TourManagement/use-cases/mock/scheduledTourDetailsRepositoryDataSourceMock'
 import { InMemoryScheduledTourDetailsRepository } from './contexts/TourManagement/gateways/InMemorySheduledTourDetailsRepository'
+import { getNearestContributionPointsByGeoPosUseCase } from '@/contexts/map/domain/use-cases/getNearestContributionPointsByGeoPos'
+import { InMemoryMapRepository } from '@/contexts/map/gateways/InMemoryMapRepository'
 
 const authRepositoryInstance = new InMemoryAuthRepository([{
   id: 1,
@@ -30,9 +32,10 @@ const authRepositoryInstance = new InMemoryAuthRepository([{
   username: 'fansoa',
   token: 'oat_MTEy.ZmJMWGlXY2dmUkp3WUgzdU5yS0wzYnBuVUc5N2hyRld5bGtMWG5VeDQwMDIxNjMwMDI'
 }])
-
 const scheduledTourDetailsRepositoryInstance = new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock, 1)
- 
+const mapRepositoryInstance = new InMemoryMapRepository()
+
+
 // For authentication, I need to pass the value of my authStore 
 // into the context of the TanStack Router to redirect users based on their store. 
 // Since accessing a store requires using a hook, I cannot create the router outside 
@@ -54,6 +57,7 @@ const router = createRouter({
     loginUseCase: loginUseCase(authRepositoryInstance),
     logoutUseCase: logoutUseCase(authRepositoryInstance),
     driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
+    getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance)
   }
 })
 
@@ -80,7 +84,8 @@ export function App() {
       loginUseCase: loginUseCase(authRepositoryInstance),
       logoutUseCase: logoutUseCase(authRepositoryInstance),
       driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
-      user
+      user,
+      getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance)
     }
   })
 
