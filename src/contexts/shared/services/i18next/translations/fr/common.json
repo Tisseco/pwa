@@ -6,5 +6,7 @@
     "logged.as": "Connecté en tant que",
     "log.out": "Se déconnecter",
     "guest": "Invité",
-    "refresh.app": "Relancer l'App"
+    "refresh.app": "Relancer l'App",
+    "select.an.address": "Selectionner une adresse",
+    "find.an.address": "Rechercher une adresse"
 }

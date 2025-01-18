@@ -6,5 +6,7 @@
     "logged.as": "Logged as",
     "log.out": "Log out",
     "guest": "Guest",
-    "refresh.app": "Refresh App"
+    "refresh.app": "Refresh App",
+    "select.an.address": "Select an address",
+    "find.an.address": "Find an address"
 }
