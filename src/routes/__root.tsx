@@ -1,4 +1,5 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { QueryClient } from '@tanstack/react-query'
 import { i18n } from 'i18next'
 
@@ -26,6 +27,7 @@ function Root() {
       <Outlet />
       <Toaster />
       <PWABadge />
+      {/* <TanStackRouterDevtools /> */}
     </>
   )
 }

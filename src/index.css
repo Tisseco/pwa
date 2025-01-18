@@ -72,6 +72,54 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%}
 }
+
+@layer base {
+  :root  {
+    --background: 229 20% 95%;
+    --foreground: 229 5% 10%;
+    --card: 229 20% 93%;
+    --card-foreground: 229 5% 15%;
+    --popover: 229 20% 95%;
+    --popover-foreground: 229 95% 10%;
+    --primary: 229 44% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 229 20% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 191 20% 93%;
+    --muted-foreground: 229 5% 40%;
+    --accent: 191 20% 90%;
+    --accent-foreground: 229 5% 15%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 229 5% 93%;
+    --border: 229 20% 82%;
+    --input: 229 20% 50%;
+    --ring: 229 44% 50%;
+    --radius: 0.5rem;
+  }
+  .dark  {
+    --background: 229 20% 10%;
+    --foreground: 229 5% 93%;
+    --card: 229 20% 10%;
+    --card-foreground: 229 5% 93%;
+    --popover: 229 20% 5%;
+    --popover-foreground: 229 5% 93%;
+    --primary: 229 44% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 229 20% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 191 20% 25%;
+    --muted-foreground: 229 5% 65%;
+    --accent: 191 20% 25%;
+    --accent-foreground: 229 5% 93%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 229 5% 93%;
+    --border: 229 20% 50%;
+    --input: 229 20% 50%;
+    --ring: 229 44% 50%;
+    --radius: 0.5rem;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -79,4 +127,25 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* .leaflet-container {
+  height: 500px;
+} */
+
+.leaflet-popup-content-wrapper {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+}
+
+.leaflet-popup-tip {
+  display: none;
 }
