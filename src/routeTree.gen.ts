@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as IsAuthenticatedImport } from './routes/_isAuthenticated'
 import { Route as IsAuthenticatedIndexImport } from './routes/_isAuthenticated/index'
+import { Route as mapCarteInteractiveImport } from './routes/(map)/carte-interactive'
 import { Route as IsAuthenticatedScheduledToursIndexImport } from './routes/_isAuthenticated/scheduled-tours/index'
 import { Route as IsAuthenticatedScheduledToursScheduledTourIdIndexImport } from './routes/_isAuthenticated/scheduled-tours/$scheduledTourId/index'
 
@@ -34,6 +35,12 @@ const IsAuthenticatedIndexRoute = IsAuthenticatedIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => IsAuthenticatedRoute,
+} as any)
+
+const mapCarteInteractiveRoute = mapCarteInteractiveImport.update({
+  id: '/(map)/carte-interactive',
+  path: '/carte-interactive',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const IsAuthenticatedScheduledToursIndexRoute =
@@ -66,6 +73,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/(map)/carte-interactive': {
+      id: '/(map)/carte-interactive'
+      path: '/carte-interactive'
+      fullPath: '/carte-interactive'
+      preLoaderRoute: typeof mapCarteInteractiveImport
       parentRoute: typeof rootRoute
     }
     '/_isAuthenticated/': {
@@ -115,6 +129,7 @@ const IsAuthenticatedRouteWithChildren = IsAuthenticatedRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '': typeof IsAuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
+  '/carte-interactive': typeof mapCarteInteractiveRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
   '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
@@ -122,6 +137,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/carte-interactive': typeof mapCarteInteractiveRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
   '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
@@ -131,6 +147,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_isAuthenticated': typeof IsAuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
+  '/(map)/carte-interactive': typeof mapCarteInteractiveRoute
   '/_isAuthenticated/': typeof IsAuthenticatedIndexRoute
   '/_isAuthenticated/scheduled-tours/': typeof IsAuthenticatedScheduledToursIndexRoute
   '/_isAuthenticated/scheduled-tours/$scheduledTourId/': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
@@ -141,15 +158,22 @@ export interface FileRouteTypes {
   fullPaths:
     | ''
     | '/login'
+    | '/carte-interactive'
     | '/'
     | '/scheduled-tours'
     | '/scheduled-tours/$scheduledTourId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/scheduled-tours' | '/scheduled-tours/$scheduledTourId'
+  to:
+    | '/login'
+    | '/carte-interactive'
+    | '/'
+    | '/scheduled-tours'
+    | '/scheduled-tours/$scheduledTourId'
   id:
     | '__root__'
     | '/_isAuthenticated'
     | '/login'
+    | '/(map)/carte-interactive'
     | '/_isAuthenticated/'
     | '/_isAuthenticated/scheduled-tours/'
     | '/_isAuthenticated/scheduled-tours/$scheduledTourId/'
@@ -159,11 +183,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IsAuthenticatedRoute: typeof IsAuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
+  mapCarteInteractiveRoute: typeof mapCarteInteractiveRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IsAuthenticatedRoute: IsAuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
+  mapCarteInteractiveRoute: mapCarteInteractiveRoute,
 }
 
 export const routeTree = rootRoute
@@ -177,7 +203,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_isAuthenticated",
-        "/login"
+        "/login",
+        "/(map)/carte-interactive"
       ]
     },
     "/_isAuthenticated": {
@@ -190,6 +217,9 @@ export const routeTree = rootRoute
     },
     "/login": {
       "filePath": "login.tsx"
+    },
+    "/(map)/carte-interactive": {
+      "filePath": "(map)/carte-interactive.tsx"
     },
     "/_isAuthenticated/": {
       "filePath": "_isAuthenticated/index.tsx",
