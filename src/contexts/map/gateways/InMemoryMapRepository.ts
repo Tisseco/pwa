@@ -1,5 +1,6 @@
 import { MapRepository } from "@/contexts/map/domain/MapRepository";
 import { GetNearestContributionPointsByGeoPosPayload, GetNearestContributionPointsByGeoPosSuccess } from "@/contexts/map/domain/types/getNearestContributionPointsByGeoPos";
+import { GetContributionPointsByAreaIdPayload, GetContributionPointsByAreaIdSuccess } from "../domain/types/getContributionPointsByAreaId";
 
 export class InMemoryMapRepository implements MapRepository {
     
@@ -43,4 +44,21 @@ export class InMemoryMapRepository implements MapRepository {
     })
   }
 
+  
+  // @ts-expect-error: args are used only in real context
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getContributionPointsByAreaId(areaId: GetContributionPointsByAreaIdPayload): Promise<GetContributionPointsByAreaIdSuccess> {
+    return new Promise((resolve) => {
+      resolve({
+        name: 'École maternelle Pommier-Picard',
+        address: 'Avenue Eugène Delacroix',
+        city: 'Roissy-en-Brie',
+        zipCode: '77680',
+        coordinates: {
+          lat: 48.79486594306784,
+          lng: 2.66332583500162,
+        },
+      },)
+    })
+  }
 }
