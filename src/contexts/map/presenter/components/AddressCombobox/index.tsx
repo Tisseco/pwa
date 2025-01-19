@@ -1,5 +1,6 @@
-import { Dispatch, useState } from "react"
+import { Dispatch, useEffect, useState } from "react"
 import { useMutation } from "@tanstack/react-query"
+import { useRouteContext } from "@tanstack/react-router"
 import { ChevronsUpDown } from "lucide-react"
 
 import { Feature, getAddressListAPIDataGouv } from "@/contexts/map/presenter/components/AddressCombobox/services/getAddressListAPIDataGouv"
@@ -17,12 +18,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/contexts/shared/presenter/components/ui/popover"
-import { useRouteContext } from "@tanstack/react-router"
 
-export function AddressCombobox({ setAddress }: { setAddress: Dispatch<Feature | null> }) {
+export function AddressCombobox({ setAddress, resetAddressCombobox }: { setAddress: Dispatch<Feature | null>, resetAddressCombobox: boolean }) {
   const { i18n: { t } } = useRouteContext({ from: '__root__' })
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState<Feature | null>(null)
+
+  useEffect(() => {
+      setValue(null);
+  }, [resetAddressCombobox]);
 
   const debounce = useDebounce()
 
