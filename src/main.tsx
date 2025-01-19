@@ -23,6 +23,7 @@ import { scheduledTourDetailsRepositoryDataSourceMock } from './contexts/tests/T
 import { InMemoryScheduledTourDetailsRepository } from './contexts/TourManagement/gateways/InMemorySheduledTourDetailsRepository'
 import { getNearestContributionPointsByGeoPosUseCase } from '@/contexts/map/domain/use-cases/getNearestContributionPointsByGeoPos'
 import { InMemoryMapRepository } from '@/contexts/map/gateways/InMemoryMapRepository'
+import { getContributionPointsByAreaIdUseCase } from '@/contexts/map/domain/use-cases/getContributionPointsByAreaId'
 
 const authRepositoryInstance = new InMemoryAuthRepository([{
   id: 1,
@@ -57,7 +58,8 @@ const router = createRouter({
     loginUseCase: loginUseCase(authRepositoryInstance),
     logoutUseCase: logoutUseCase(authRepositoryInstance),
     driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
-    getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance)
+    getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance),
+    getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance)
   }
 })
 
@@ -85,7 +87,8 @@ export function App() {
       logoutUseCase: logoutUseCase(authRepositoryInstance),
       driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
       user,
-      getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance)
+      getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance),
+      getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance)
     }
   })
 

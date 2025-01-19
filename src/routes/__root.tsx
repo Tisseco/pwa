@@ -17,6 +17,7 @@ export const Route = createRootRouteWithContext<{
   driverFetchHisOwnScheduledTourDetailsUseCase: ScheduledTourDetailsRepository["getAllScheduledTourDetailsByAssignedUser"]
   user?: AuthState["user"]
   getNearestContributionPointsByGeoPos: MapRepository["getNearestContributionPointsByGeoPos"]
+  getContributionPointsByAreaId: MapRepository["getContributionPointsByAreaId"]
 }>()({
   component: Root
 })
