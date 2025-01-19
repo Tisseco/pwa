@@ -15,5 +15,14 @@
     "address.confirmation": "Address confirmation",
     "report.addressing.error": "Report addressing error",
     "you.are.here": "You are here",
-    "click.on.the.marker.to.display.the.address": "Click on the marker to display the address"
+    "click.on.the.marker.to.display.the.address": "Click on the marker to display the address",
+    "report.form": "Report form",
+    "what.do.you.want.to.report": "What do you want to report",
+    "the.delivery.point.is.full": "The delivery point is full",
+    "the.delivery.point.is.degraded": "The delivery point is degraded",
+    "send.a.report": "Send a report",
+    "you.need.to.select.a.report.type": "You need to select a report type",
+    "invalid.image.file.type.allowed.types.are.png.jpeg.jpg": "Invalid image file type. Allowed types are png jpeg jpg",
+    "file.size.must.be.less.than.2MB": "File size must be less than 2MB" ,
+    "add.a.picture": "Add a picture"
 }

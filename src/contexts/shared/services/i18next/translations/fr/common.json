@@ -15,5 +15,14 @@
     "address.confirmation": "Confirmation de l'adresse",
     "report.addressing.error": "Signaler l'erreur d'adressage",
     "you.are.here": "Vous êtes ici",
-    "click.on.the.marker.to.display.the.address": "Cliquer sur le marqueur pour afficher l'adresse"
+    "click.on.the.marker.to.display.the.address": "Cliquer sur le marqueur pour afficher l'adresse",
+    "report.form": "Formulaire de signalement",
+    "what.do.you.want.to.report": "Que voulez-vous signaler",
+    "the.delivery.point.is.full": "Le point d'apport est plein",
+    "the.delivery.point.is.degraded": "Le point d'apport est dégradé",
+    "send.a.report": "Envoyer un signalement",
+    "you.need.to.select.a.report.type": "Vous devez sélectionner un type de signalement.",
+    "invalid.image.file.type.allowed.types.are.png.jpeg.jpg": "Type de fichier image invalide. Les types autorisés sont PNG, JPEG et JPG.",
+    "file.size.must.be.less.than.2MB": "La taille du fichier doit être inférieure à 2 Mo." ,
+    "add.a.picture": "Ajoutez une photo si vous le souhaitez"
 }

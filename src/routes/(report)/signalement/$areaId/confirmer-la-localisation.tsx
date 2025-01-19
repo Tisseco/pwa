@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { createFileRoute, useParams, useRouteContext } from '@tanstack/react-router'
+import { createFileRoute, useNavigate, useParams, useRouteContext } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
@@ -17,6 +17,7 @@ function RouteComponent() {
   const { areaId } = useParams({ from: '/(report)/signalement/$areaId/confirmer-la-localisation' })
   const { i18n: { t }, getContributionPointsByAreaId } = useRouteContext({ from: '/(report)/signalement/$areaId/confirmer-la-localisation' })
   const [currentPosition, setCurrentPosition] = useState<Coordinates | null>(null);
+  const navigate = useNavigate({ from: '/signalement/$areaId/confirmer-la-localisation' })
   
   const initializeGeolocation = useCallback(() => {
       if ("geolocation" in navigator) {
@@ -87,7 +88,13 @@ function RouteComponent() {
       </div>
       <div className="px-3 row-span-2 flex flex-col gap-2">
         <Button className="w-full" variant="outline" size="lg">{t('common:report.addressing.error')}</Button>
-        <Button className="w-full" size="lg">{t('address.confirmation')}</Button>
+        <Button
+          className="w-full"
+          size="lg"
+          onClick={() => navigate({to: '/signalement/$areaId/formulaire' })}
+        >
+          {t('address.confirmation')}
+        </Button>
       </div>
     </div>
   )
