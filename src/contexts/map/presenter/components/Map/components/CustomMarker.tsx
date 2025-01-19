@@ -6,7 +6,7 @@ import { Coordinates } from '@/contexts/map/presenter/components/Map/types'
 import { CustomPopup } from "@/contexts/map/presenter/components/Map/components/CustomPopup";
 
 const baseIconOption = {
-  iconUrl: "marker-icon-2x-blue.png", // Default marker
+  iconUrl: "/marker-icon-2x-blue.png", // Default marker
   iconSize: [25, 41], // Size of the icon
   iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
   popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
@@ -15,7 +15,7 @@ const baseIconOption = {
 } satisfies IconOptions
 
 const blueMarker = L.icon(baseIconOption);
-const redMarker = L.icon({ ...baseIconOption, iconUrl: "marker-icon-2x-red.png" });
+const redMarker = L.icon({ ...baseIconOption, iconUrl: "/marker-icon-2x-red.png" });
 
 const MarkerIcons = {
   blue: blueMarker,
