@@ -10,5 +10,6 @@
     "select.an.address": "Select an address",
     "find.an.address": "Find an address",
     "interactive.map": "Interactive map",
-    "select.an.address.to.display.the.nearest.voluntary.drop-off.points": "Select an address to display the nearest voluntary drop-off points"
+    "select.an.address.to.display.the.nearest.voluntary.drop-off.points": "Select an address to display the nearest voluntary drop-off points",
+    "your.location": "Your location"
 }

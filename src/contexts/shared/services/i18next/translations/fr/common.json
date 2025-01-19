@@ -10,5 +10,6 @@
     "select.an.address": "Selectionner une adresse",
     "find.an.address": "Rechercher une adresse",
     "interactive.map": "Carte interactive",
-    "select.an.address.to.display.the.nearest.voluntary.drop-off.points": "Sélectionner une adresse pour afficher les points d'apport volontaire les plus proche"
+    "select.an.address.to.display.the.nearest.voluntary.drop-off.points": "Sélectionner une adresse pour afficher les points d'apport volontaire les plus proche",
+    "your.location": "Votre position"
 }
