@@ -7,5 +7,6 @@
     "driver": "Chauffeur",
     "cancel": "Annuler",
     "vehicle": "Vehicule",
-    "delivery": "Livraison"
+    "delivery": "Livraison",
+    "loading": "Chargement"
 }

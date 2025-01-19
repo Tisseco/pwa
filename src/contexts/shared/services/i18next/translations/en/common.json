@@ -11,5 +11,9 @@
     "find.an.address": "Find an address",
     "interactive.map": "Interactive map",
     "select.an.address.to.display.the.nearest.voluntary.drop-off.points": "Select an address to display the nearest voluntary drop-off points",
-    "your.location": "Your location"
+    "your.location": "Your location",
+    "address.confirmation": "Address confirmation",
+    "report.addressing.error": "Report addressing error",
+    "you.are.here": "You are here",
+    "click.on.the.marker.to.display.the.address": "Click on the marker to display the address"
 }

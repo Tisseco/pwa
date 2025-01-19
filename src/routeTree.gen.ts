@@ -17,6 +17,7 @@ import { Route as IsAuthenticatedIndexImport } from './routes/_isAuthenticated/i
 import { Route as mapCarteInteractiveImport } from './routes/(map)/carte-interactive'
 import { Route as IsAuthenticatedScheduledToursIndexImport } from './routes/_isAuthenticated/scheduled-tours/index'
 import { Route as IsAuthenticatedScheduledToursScheduledTourIdIndexImport } from './routes/_isAuthenticated/scheduled-tours/$scheduledTourId/index'
+import { Route as reportSignalementAreaIdConfirmerLaLocalisationImport } from './routes/(report)/signalement/$areaId/confirmer-la-localisation'
 
 // Create/Update Routes
 
@@ -55,6 +56,13 @@ const IsAuthenticatedScheduledToursScheduledTourIdIndexRoute =
     id: '/scheduled-tours/$scheduledTourId/',
     path: '/scheduled-tours/$scheduledTourId/',
     getParentRoute: () => IsAuthenticatedRoute,
+  } as any)
+
+const reportSignalementAreaIdConfirmerLaLocalisationRoute =
+  reportSignalementAreaIdConfirmerLaLocalisationImport.update({
+    id: '/(report)/signalement/$areaId/confirmer-la-localisation',
+    path: '/signalement/$areaId/confirmer-la-localisation',
+    getParentRoute: () => rootRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -96,6 +104,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IsAuthenticatedScheduledToursIndexImport
       parentRoute: typeof IsAuthenticatedImport
     }
+    '/(report)/signalement/$areaId/confirmer-la-localisation': {
+      id: '/(report)/signalement/$areaId/confirmer-la-localisation'
+      path: '/signalement/$areaId/confirmer-la-localisation'
+      fullPath: '/signalement/$areaId/confirmer-la-localisation'
+      preLoaderRoute: typeof reportSignalementAreaIdConfirmerLaLocalisationImport
+      parentRoute: typeof rootRoute
+    }
     '/_isAuthenticated/scheduled-tours/$scheduledTourId/': {
       id: '/_isAuthenticated/scheduled-tours/$scheduledTourId/'
       path: '/scheduled-tours/$scheduledTourId'
@@ -132,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/carte-interactive': typeof mapCarteInteractiveRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/signalement/$areaId/confirmer-la-localisation': typeof reportSignalementAreaIdConfirmerLaLocalisationRoute
   '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
@@ -140,6 +156,7 @@ export interface FileRoutesByTo {
   '/carte-interactive': typeof mapCarteInteractiveRoute
   '/': typeof IsAuthenticatedIndexRoute
   '/scheduled-tours': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/signalement/$areaId/confirmer-la-localisation': typeof reportSignalementAreaIdConfirmerLaLocalisationRoute
   '/scheduled-tours/$scheduledTourId': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
@@ -150,6 +167,7 @@ export interface FileRoutesById {
   '/(map)/carte-interactive': typeof mapCarteInteractiveRoute
   '/_isAuthenticated/': typeof IsAuthenticatedIndexRoute
   '/_isAuthenticated/scheduled-tours/': typeof IsAuthenticatedScheduledToursIndexRoute
+  '/(report)/signalement/$areaId/confirmer-la-localisation': typeof reportSignalementAreaIdConfirmerLaLocalisationRoute
   '/_isAuthenticated/scheduled-tours/$scheduledTourId/': typeof IsAuthenticatedScheduledToursScheduledTourIdIndexRoute
 }
 
@@ -161,6 +179,7 @@ export interface FileRouteTypes {
     | '/carte-interactive'
     | '/'
     | '/scheduled-tours'
+    | '/signalement/$areaId/confirmer-la-localisation'
     | '/scheduled-tours/$scheduledTourId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -168,6 +187,7 @@ export interface FileRouteTypes {
     | '/carte-interactive'
     | '/'
     | '/scheduled-tours'
+    | '/signalement/$areaId/confirmer-la-localisation'
     | '/scheduled-tours/$scheduledTourId'
   id:
     | '__root__'
@@ -176,6 +196,7 @@ export interface FileRouteTypes {
     | '/(map)/carte-interactive'
     | '/_isAuthenticated/'
     | '/_isAuthenticated/scheduled-tours/'
+    | '/(report)/signalement/$areaId/confirmer-la-localisation'
     | '/_isAuthenticated/scheduled-tours/$scheduledTourId/'
   fileRoutesById: FileRoutesById
 }
@@ -184,12 +205,15 @@ export interface RootRouteChildren {
   IsAuthenticatedRoute: typeof IsAuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
   mapCarteInteractiveRoute: typeof mapCarteInteractiveRoute
+  reportSignalementAreaIdConfirmerLaLocalisationRoute: typeof reportSignalementAreaIdConfirmerLaLocalisationRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IsAuthenticatedRoute: IsAuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
   mapCarteInteractiveRoute: mapCarteInteractiveRoute,
+  reportSignalementAreaIdConfirmerLaLocalisationRoute:
+    reportSignalementAreaIdConfirmerLaLocalisationRoute,
 }
 
 export const routeTree = rootRoute
@@ -204,7 +228,8 @@ export const routeTree = rootRoute
       "children": [
         "/_isAuthenticated",
         "/login",
-        "/(map)/carte-interactive"
+        "/(map)/carte-interactive",
+        "/(report)/signalement/$areaId/confirmer-la-localisation"
       ]
     },
     "/_isAuthenticated": {
@@ -228,6 +253,9 @@ export const routeTree = rootRoute
     "/_isAuthenticated/scheduled-tours/": {
       "filePath": "_isAuthenticated/scheduled-tours/index.tsx",
       "parent": "/_isAuthenticated"
+    },
+    "/(report)/signalement/$areaId/confirmer-la-localisation": {
+      "filePath": "(report)/signalement/$areaId/confirmer-la-localisation.tsx"
     },
     "/_isAuthenticated/scheduled-tours/$scheduledTourId/": {
       "filePath": "_isAuthenticated/scheduled-tours/$scheduledTourId/index.tsx",

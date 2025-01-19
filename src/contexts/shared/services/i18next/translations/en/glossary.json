@@ -7,5 +7,6 @@
     "driver": "Driver",
     "cancel": "Cancel",
     "vehicle": "Vehicle",
-    "delivery": "Delivery"
+    "delivery": "Delivery",
+    "loading": "Loading"
 }
