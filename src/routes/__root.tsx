@@ -7,6 +7,7 @@ import PWABadge from '@/contexts/shared/presenter/components/PWABadge'
 import { Toaster } from '@/contexts/shared/presenter/components/ui/toaster'
 import { AuthState } from '@/contexts/auth/store/AuthStore'
 import { ScheduledTourDetailsRepository } from '@/contexts/TourManagement/domain/ScheduledTourDetailsRepository'
+import { MapRepository } from '@/contexts/map/domain/MapRepository'
 
 export const Route = createRootRouteWithContext<{
   i18n: i18n
@@ -15,6 +16,7 @@ export const Route = createRootRouteWithContext<{
   logoutUseCase: AuthRepository["logout"]
   driverFetchHisOwnScheduledTourDetailsUseCase: ScheduledTourDetailsRepository["getAllScheduledTourDetailsByAssignedUser"]
   user?: AuthState["user"]
+  getNearestContributionPointsByGeoPos: MapRepository["getNearestContributionPointsByGeoPos"]
 }>()({
   component: Root
 })
