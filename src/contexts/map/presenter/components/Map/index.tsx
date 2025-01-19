@@ -4,8 +4,8 @@ import { Navigation } from 'lucide-react'
 import { contributionPoint } from '@/contexts/map/domain/aggregates/contributionPoint'
 import { Coordinates } from '@/contexts/map/presenter/components/Map/types'
 import { CustomMarker } from '@/contexts/map/presenter/components/Map/components/CustomMarker'
+import { FlyTo } from '@/contexts/map/presenter/components/Map/components/FlyTo'
 import '@/contexts/map/presenter/components/Map/styles.css'
-import { FlyTo } from './components/FlyTo'
 
 export function Map({
   className,
