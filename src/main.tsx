@@ -24,6 +24,8 @@ import { InMemoryScheduledTourDetailsRepository } from './contexts/TourManagemen
 import { getNearestContributionPointsByGeoPosUseCase } from '@/contexts/map/domain/use-cases/getNearestContributionPointsByGeoPos'
 import { InMemoryMapRepository } from '@/contexts/map/gateways/InMemoryMapRepository'
 import { getContributionPointsByAreaIdUseCase } from '@/contexts/map/domain/use-cases/getContributionPointsByAreaId'
+import { InMemoryReportRepository } from '@/contexts/report/gateways/InMemoryReportRepository'
+import { postReportFormUseCase } from '@/contexts/report/domain/use-cases/postReportForm'
 
 const authRepositoryInstance = new InMemoryAuthRepository([{
   id: 1,
@@ -35,7 +37,7 @@ const authRepositoryInstance = new InMemoryAuthRepository([{
 }])
 const scheduledTourDetailsRepositoryInstance = new InMemoryScheduledTourDetailsRepository(scheduledTourDetailsRepositoryDataSourceMock, 1)
 const mapRepositoryInstance = new InMemoryMapRepository()
-
+const reportRepositoryInstance = new InMemoryReportRepository()
 
 // For authentication, I need to pass the value of my authStore 
 // into the context of the TanStack Router to redirect users based on their store. 
@@ -59,7 +61,8 @@ const router = createRouter({
     logoutUseCase: logoutUseCase(authRepositoryInstance),
     driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
     getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance),
-    getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance)
+    getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance),
+    postReportForm: postReportFormUseCase(reportRepositoryInstance)
   }
 })
 
@@ -88,7 +91,8 @@ export function App() {
       driverFetchHisOwnScheduledTourDetailsUseCase: driverFetchHisOwnScheduledTourDetailsUseCase(scheduledTourDetailsRepositoryInstance),
       user,
       getNearestContributionPointsByGeoPos: getNearestContributionPointsByGeoPosUseCase(mapRepositoryInstance),
-      getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance)
+      getContributionPointsByAreaId: getContributionPointsByAreaIdUseCase(mapRepositoryInstance),
+      postReportForm: postReportFormUseCase(reportRepositoryInstance)
     }
   })
 
