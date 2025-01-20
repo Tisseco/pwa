@@ -24,5 +24,7 @@
     "you.need.to.select.a.report.type": "Vous devez sélectionner un type de signalement.",
     "invalid.image.file.type.allowed.types.are.png.jpeg.jpg": "Type de fichier image invalide. Les types autorisés sont PNG, JPEG et JPG.",
     "file.size.must.be.less.than.2MB": "La taille du fichier doit être inférieure à 2 Mo." ,
-    "add.a.picture": "Ajoutez une photo si vous le souhaitez"
+    "add.a.picture": "Ajoutez une photo si vous le souhaitez",
+    "thank.you.for.your.report": "Merci pour votre signalement",
+    "find.another.delevery.point": "Trouver un autre point d'apport"
 }

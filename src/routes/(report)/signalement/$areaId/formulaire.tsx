@@ -44,8 +44,15 @@ function RouteComponent() {
   })
 
   const { mutate } = useMutation({
-    mutationFn: (payload: z.infer<typeof FormSchema>) => postReportForm(payload)
+    mutationFn: (payload: z.infer<typeof FormSchema>) => postReportForm(payload),
+    onSuccess: (data) => {
+      if (data.message === 'success') navigate({ to: '/signalement/terminer' })
+    }
   })
+
+  const onSubmit = (payload: z.infer<typeof FormSchema>) => {
+    mutate(payload)
+  }
   
   return (
     <div className="container mx-auto min-h-screen max-h-screen grid grid-rows-12">
@@ -125,8 +132,7 @@ function RouteComponent() {
         <Button
           className="w-full"
           size="lg"
-          // @ts-expect-error: TODO Correct it
-          onClick={form.handleSubmit(mutate)}
+          onClick={form.handleSubmit(onSubmit)}
         >
           {t('common:send.a.report')}
         </Button>
